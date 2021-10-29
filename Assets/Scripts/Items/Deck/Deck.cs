@@ -10,6 +10,7 @@ public class Deck : MonoBehaviour
     private Transform deckTransform;
     [SerializeField]
     private GameObject cardPrefab;
+
     public void newDeck()
     {
         deck = new List<Card>();
@@ -35,13 +36,9 @@ public class Deck : MonoBehaviour
             for(int j = 1; j <= 13; j++)
             {
                 Card c = new Card(e, s, j);
-                //cardPrefab.AddComponent<Card>();
-                //GameObject.Instantiate<GameObject>(cardPrefab, deckTransform);
 
-                GameObject newCard = cardPrefab;
-                GameObject card = Instantiate(newCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-
-                //card.GetComponent<Button>().onClick.AddListener(delegate { GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().SetSelectedCard(card.GetComponent<Image>()); });
+                cardPrefab.GetComponent<Card>().SetCard(c.Element, c.Suit, c.Value);
+                GameObject card = Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 
                 card.transform.SetParent(GameObject.FindGameObjectWithTag("Deck").transform, false);
 

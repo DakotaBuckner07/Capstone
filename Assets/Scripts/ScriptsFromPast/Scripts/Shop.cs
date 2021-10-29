@@ -10,19 +10,19 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private GameObject itemPrefab;
 
-    private List<Armor> armors = new List<Armor>();
+    private List<Shield> shields = new List<Shield>();
     private List<Weapon> weapons = new List<Weapon>();
     private List<Potion> potions = new List<Potion>();
 
     private void newShop()
     {
-        armors.Clear();
+        shields.Clear();
         weapons.Clear();
         potions.Clear();
         for(int i = 0; i < 3; i++)
         {
             int value = Utilities.GetRandNumTimesLevel(1, 5);
-            armors.Add(new Armor(value, Utilities.GetRandomElement(), (int)(value * Random.Range(1.0f, 2.0f))));
+            shields.Add(new Shield(value, Utilities.GetRandomElement(), (int)(value * Random.Range(1.0f, 2.0f))));
             weapons.Add(new Weapon(value, Utilities.GetRandomElement(), (int)(value * Random.Range(1.0f, 2.0f))));
         }
         for(int i = 0; i < 5; i++)
@@ -34,17 +34,17 @@ public class Shop : MonoBehaviour
                     case 0:
                         int value = Utilities.GetRandNumTimesLevel(2, 5);
                         Debug.Log("Resistance");
-                        potions.Add(new ResistancePot(Utilities.GetRandomElement(), value, Random.Range(1, 3), (int)(value * Random.Range(1.0f, 2.0f))));
+                        potions.Add(new ResistancePotion(Utilities.GetRandomElement(), value, Random.Range(1, 3), (int)(value * Random.Range(1.0f, 2.0f))));
                         break;
                     case 1:
                         value = Utilities.GetRandNumTimesLevel(3, 10);
                         Debug.Log("Damage");
-                        potions.Add(new ElementPot(Utilities.GetRandomElement(), value, (int)(value * Random.Range(1.0f, 2.0f))));
+                        potions.Add(new DamagePotion(Utilities.GetRandomElement(), value, (int)(value * Random.Range(1.0f, 2.0f))));
                         break;
                     case 2:
                         value = Utilities.GetRandNumTimesLevel(10, 15);
                         Debug.Log("Health");
-                        potions.Add(new HealthPot(value, (int)(value * Random.Range(1.3f, 2.0f))));
+                        potions.Add(new HealthPotion(value, (int)(value * Random.Range(1.3f, 2.0f))));
                         break;
                 }
             }
@@ -69,9 +69,9 @@ public class Shop : MonoBehaviour
         {
             Item itemPrefabItem = itemPrefab.GetComponent<Item>();
             shopScreen.SetActive(true);
-            itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.armorSprite;
+            //itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.armorSprite;
 
-            foreach (Armor a in armors)
+            foreach (Shield a in shields)
             {
                 itemPrefabItem.priceTxt.text = a.Price.ToString();
                 itemPrefabItem.pointTxt.text = a.Resistance.ToString();
@@ -79,7 +79,7 @@ public class Shop : MonoBehaviour
                 GameObject armor = Instantiate(itemPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 armor.transform.SetParent(GameObject.FindGameObjectWithTag("ShopArmor").transform, false);
             }
-            itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.weaponSprite;
+            //itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.weaponSprite;
 
             foreach (Weapon w in weapons)
             {
@@ -89,7 +89,7 @@ public class Shop : MonoBehaviour
                 GameObject weapon = Instantiate(itemPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 weapon.transform.SetParent(GameObject.FindGameObjectWithTag("ShopWeapons").transform, false);
             }
-            itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.potionSprite;
+            //itemPrefab.GetComponent<Image>().sprite = itemPrefabItem.potionSprite;
 
             foreach (Potion p in potions)
             {

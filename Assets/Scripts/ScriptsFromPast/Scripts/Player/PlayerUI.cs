@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    public List<Sprite> cardImages;
-    public GameObject cardPrefab;
-    public GameObject handUI;
-
     public Text coinsTxt;
     public Text healthTxt;
     public Slider healthbar;
@@ -16,7 +12,7 @@ public class PlayerUI : MonoBehaviour
     public void UpdatePlayerUI(int health, int maxHealth, List<Card> hand, int coins)
     {
         UpdateHealthUI(health, maxHealth);
-        UpdateHandUI(hand);
+        //UpdateHandUI(hand);
         coinsTxt.text = "" + coins + " coins";
     }
 
@@ -27,7 +23,7 @@ public class PlayerUI : MonoBehaviour
         healthbar.value = health;
         healthbar.minValue = 0;
     }
-
+    /*Hand UI For 2D Canvas
     public void UpdateHandUI(List<Card> hand)
     {
         foreach (Transform child in handUI.transform)
@@ -71,9 +67,10 @@ public class PlayerUI : MonoBehaviour
             GameObject card = Instantiate(newCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 
             //This line sets the button onClick to the right GameController. I hate this line.
-            card.GetComponent<Button>().onClick.AddListener(delegate { GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().SetSelectedCard(card.GetComponent<Image>()); });
+            //card.GetComponent<Button>().onClick.AddListener(delegate { GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().SetSelectedCard(card.GetComponent<Image>()); });
 
             card.transform.SetParent(GameObject.FindGameObjectWithTag("HandUI").transform, false);
         }
     }
+    */
 }

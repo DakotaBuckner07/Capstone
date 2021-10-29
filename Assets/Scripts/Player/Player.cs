@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region Variables
     private int maxHealth = 100;
     private int health;
     private int coins;
 
     private Deck deck;
-    private ResistancePot resistPotion;
+    private ResistancePotion resistPotion;
     private Weapon equippedWeapon;
-    private Armor equippedArmor;
+    private Shield equippedArmor;
 
     private List<Card> hand;
-    private PlayerUI playerUI;
+    //private PlayerUI playerUI;
 
     public List<Card> GetHand { get => hand; }
     public int Health { get => health; }
     public int Coins { get => coins; set { coins += value; } }
     public int damage = 2;
     public int resistance = 0;
+    public bool ableToUseCard = true;
 
+    [SerializeField]
     private float projectileTimer = 5.0f;
-    private bool ableToUseCard = true;
-
+    #endregion
     void Start()
     {
-        playerUI = GetComponentInChildren<PlayerUI>();
         health = maxHealth;
-        deck = new Deck();
-        deck.newDeck();
+        deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
         hand = deck.Draw(5);
+        ableToUseCard = true;
         UpdatePlayerUI();
     }
 
@@ -84,7 +85,7 @@ public class Player : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
         UpdatePlayerUI();
     }
-
+    /* Previous Functions
     public int Turn(Card c)
     {
         ableToUseCard = false;
@@ -94,9 +95,9 @@ public class Player : MonoBehaviour
         if (equippedWeapon != null) return value + equippedWeapon.Damage;
         return value;
     }
-
+    */
     #region inventory
-    public void EquipArmor(Armor armor)
+    public void EquipShield(Shield armor)
     {
         equippedArmor = armor;
     }
@@ -108,6 +109,6 @@ public class Player : MonoBehaviour
 
     public void UpdatePlayerUI()
     {
-        playerUI.UpdatePlayerUI(Health, maxHealth, hand, coins);
+        //playerUI.UpdatePlayerUI(Health, maxHealth, hand, coins);
     }
 }

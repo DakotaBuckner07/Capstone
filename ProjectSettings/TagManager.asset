@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Deck
+  - MonsterSpawner
+  - Card
+  - Monster
   layers:
   - Default
   - TransparentFX

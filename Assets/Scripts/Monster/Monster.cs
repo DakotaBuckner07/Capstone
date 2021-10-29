@@ -14,16 +14,12 @@ public class Monster : MonoBehaviour
     public int Health { get => health; }
     public Element getElement { get => element; }
 
-    private void Start()
-    {
-        newMonster();
-    }
-
     public void newMonster()
     {
         maxHealth = Utilities.newMonsterHealth();
         health = maxHealth;
         element = Utilities.GetRandomElement();
+        Debug.Log(maxHealth);
         UpdateMonsterUI();
     }
 
@@ -48,10 +44,15 @@ public class Monster : MonoBehaviour
         }
         health -= damage + bonus;
         Debug.Log("Player delt " + (damage + bonus) + " damage using a card");
+        Debug.Log(health);
+        if(health <= 0)
+        {
+            newMonster();
+        }
         UpdateMonsterUI();
     }
 
-    public void TakeDamage(ElementPot p)
+    public void TakeDamage(DamagePotion p)
     {
         int weakness = Utilities.CheckElements(element, p.Element);
         int damage = p.Value;
@@ -72,7 +73,7 @@ public class Monster : MonoBehaviour
 
     public void UpdateMonsterUI()
     {
-        healthbar.maxValue = maxHealth;
-        healthbar.value = health;
+        //healthbar.maxValue = maxHealth;
+        //healthbar.value = health;
     }
 }

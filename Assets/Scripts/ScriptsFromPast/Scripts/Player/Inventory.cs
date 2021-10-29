@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryScreen;
     public GameObject itemPrefab;
 
-    private List<Armor> armors = new List<Armor>();
+    private List<Shield> shields = new List<Shield>();
     private List<Weapon> weapons = new List<Weapon>();
     private List<Potion> potions = new List<Potion>();
 
@@ -17,9 +17,9 @@ public class Inventory : MonoBehaviour
     {
         weapons.Remove(w);
     }
-    public void RemoveArmor(Armor a)
+    public void RemoveArmor(Shield a)
     {
-        armors.Remove(a);
+        shields.Remove(a);
 
     }
     public void RemovePotion(Potion p)
@@ -30,9 +30,9 @@ public class Inventory : MonoBehaviour
     {
         weapons.Add(w);
     }
-    public void AddArmor(Armor a)
+    public void AddArmor(Shield a)
     {
-        armors.Add(a);
+        shields.Add(a);
 
     }
     public void AddPotion(Potion p)
@@ -62,7 +62,7 @@ public class Inventory : MonoBehaviour
                     Destroy(inventoryBtns[i]);
                 }
             }
-            foreach(Armor a in armors)
+            foreach(Shield a in shields)
             {
                 GameObject armor = Instantiate(itemPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 armor.transform.SetParent(GameObject.FindGameObjectWithTag("InventoryUI").transform, false);

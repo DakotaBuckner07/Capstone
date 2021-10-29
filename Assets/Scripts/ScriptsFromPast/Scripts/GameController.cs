@@ -8,16 +8,21 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject gameOverScreen;
 
+    public Deck deck;
     public Player player;
     public Monster monster;
-
-    private Card selectedCard;
-
+    private void Start()
+    {
+        GameObject.FindGameObjectWithTag("MonsterSpawner").GetComponent<MonsterSpawner>().newMonster();
+        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+        deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
+        deck.newDeck();
+    }
     public void SetPlayer()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
-
+    /* Methods from Previous
     public void TakeTurn()
     {
         if (selectedCard != null) 
@@ -53,7 +58,7 @@ public class GameController : MonoBehaviour
         if(player == null)SetPlayer();
         //selectedCard = Utilities.GetCardFromSprite(i.sprite, player.GetHand);
     }
-
+    */
     public void HealPlayer()
     {
         player.Heal(Utilities.GetRandNumTimesLevel(10, 30));
@@ -61,7 +66,7 @@ public class GameController : MonoBehaviour
 
     public void UseRandomDamagePotion()
     {
-        monster.TakeDamage(new ElementPot(Utilities.GetRandomElement(), Utilities.GetRandNumTimesLevel(5, 10), 0));
-        TakeTurn();
+        monster.TakeDamage(new DamagePotion(Utilities.GetRandomElement(), Utilities.GetRandNumTimesLevel(5, 10), 0));
+        //TakeTurn();
     }
 }
