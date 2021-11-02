@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class HealthPotion : Potion
 {
     private int multiplier;
@@ -14,7 +13,7 @@ public class HealthPotion : Potion
         value = (int)(multiplier * Random.Range(1.0f, 1.5f));
     }
 
-    public int Use()
+    public int healAmount()
     {
         return value;
     }

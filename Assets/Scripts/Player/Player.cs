@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private Deck deck;
     private ResistancePotion resistPotion;
     private Weapon equippedWeapon;
-    private Shield equippedArmor;
+    private Shield equippedShield;
 
     private List<Card> hand;
     //private PlayerUI playerUI;
@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public List<Card> GetHand { get => hand; }
     public int Health { get => health; }
     public int Coins { get => coins; set { coins += value; } }
+    public Weapon GetWeapon { get => equippedWeapon; }
+    public Shield GetShield { get => equippedShield; }
     public int damage = 2;
     public int resistance = 0;
     public bool ableToUseCard = true;
@@ -52,18 +54,18 @@ public class Player : MonoBehaviour
     public void TakeDamage(int dmg, Element e)
     {
         int currResistance = resistance;
-        if(equippedArmor != null)
+        if(equippedShield != null)
         {
-            if(Utilities.CheckElements(equippedArmor.Element, e) == 1)
+            if(Utilities.CheckElements(equippedShield.Element, e) == 1)
             {
-                currResistance += equippedArmor.Resistance * 2;
+                currResistance += equippedShield.Resistance * 2;
             }
-            else if(Utilities.CheckElements(equippedArmor.Element, e) != -1)
+            else if(Utilities.CheckElements(equippedShield.Element, e) != -1)
             {
-                currResistance += equippedArmor.Resistance;
+                currResistance += equippedShield.Resistance;
             }
         }
-        if (resistPotion != null && resistPotion.Duration > 0 && Utilities.CheckElements(resistPotion.Element, e) == 1)
+        if (resistPotion != null && Utilities.CheckElements(resistPotion.Element, e) == 1)
         {
             currResistance += resistPotion.Resistance;
         }
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
     #region inventory
     public void EquipShield(Shield armor)
     {
-        equippedArmor = armor;
+        equippedShield = armor;
     }
     public void EquipWeapon(Weapon weapon)
     {

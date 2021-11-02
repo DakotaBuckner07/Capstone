@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class ResistancePotion : Potion
 {
-    private int duration;
+    private float duration;
     private bool inUse = false;
 
     public int Resistance { get => value; }
-    public int Duration { get => duration; }
+
 
     public ResistancePotion(Element e, int resist, int time, int price)
     {
@@ -20,14 +18,26 @@ public class ResistancePotion : Potion
         this.price = price;
     }
 
-    public ResistancePotion Use()
+    public void changePotion()
+    {
+        element = Utilities.GetRandomElement();
+    }
+    
+    public void Use()
     {
         inUse = true;
-        return this;
     }
 
-    public void tickDown()
+    private void Update()
     {
-        if (inUse) duration -= 1;
+        if(inUse)
+        {
+            duration -= Time.deltaTime;
+            if(duration <= 0)
+            {
+                value = 0;
+                inUse = false;
+            }
+        }
     }
 }

@@ -10,9 +10,17 @@ public class Monster : MonoBehaviour
     private int maxHealth;
     private int health;
     private Element element;
+    private float attackTimer = 5.0f;
+
+    private GameController gameController;
 
     public int Health { get => health; }
     public Element getElement { get => element; }
+
+    private void Start()
+    {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
 
     public void newMonster()
     {
@@ -23,9 +31,14 @@ public class Monster : MonoBehaviour
         UpdateMonsterUI();
     }
 
-    public int Attack()
+    private void Update()
     {
-        return Utilities.GetRandNumTimesLevel(5, 20);
+        attackTimer -= Time.deltaTime;
+        if(attackTimer <= 0)
+        {
+            gameController.MonsterAttack();
+            attackTimer = 5.0f / Utilities.OverallLevel;
+        }
     }
 
     public void TakeDamage(Card c, int bonus = 0)

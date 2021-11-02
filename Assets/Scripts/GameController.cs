@@ -16,11 +16,8 @@ public class GameController : MonoBehaviour
         GameObject.FindGameObjectWithTag("MonsterSpawner").GetComponent<MonsterSpawner>().newMonster();
         monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
-        deck.newDeck();
-    }
-    public void SetPlayer()
-    {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        deck.newDeck();
     }
     /* Methods from Previous
     public void TakeTurn()
@@ -64,9 +61,13 @@ public class GameController : MonoBehaviour
         player.Heal(Utilities.GetRandNumTimesLevel(10, 30));
     }
 
+    public void MonsterAttack()
+    {
+        player.TakeDamage(Utilities.GetRandNumTimesLevel(5, 10), monster.getElement);
+    }
+
     public void UseRandomDamagePotion()
     {
         monster.TakeDamage(new DamagePotion(Utilities.GetRandomElement(), Utilities.GetRandNumTimesLevel(5, 10), 0));
-        //TakeTurn();
     }
 }
