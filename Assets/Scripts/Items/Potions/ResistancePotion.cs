@@ -8,6 +8,7 @@ public class ResistancePotion : Potion
     private bool inUse = false;
 
     public int Resistance { get => value; }
+    public float Duration { get => duration; }
 
 
     public ResistancePotion(Element e, int resist, int time, int price)
@@ -26,6 +27,9 @@ public class ResistancePotion : Potion
     public void Use()
     {
         inUse = true;
+        value = 10;
+        duration = 10;
+        Debug.Log("Resistant to " + value + " for " + duration + " seconds");
     }
 
     private void Update()
@@ -37,6 +41,7 @@ public class ResistancePotion : Potion
             {
                 value = 0;
                 inUse = false;
+                Debug.Log("Player is no longer resistant to " + element.ToString());
             }
         }
     }

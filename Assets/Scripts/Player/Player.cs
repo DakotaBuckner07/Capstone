@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
         if (resistPotion != null && Utilities.CheckElements(resistPotion.Element, e) == 1)
         {
             currResistance += resistPotion.Resistance;
+            Debug.Log("Player is resistant to " + resistPotion.Element.ToString());
         }
         if (dmg <= currResistance) return;
         health -= (dmg - resistance);
@@ -86,6 +87,12 @@ public class Player : MonoBehaviour
         health += heal;
         if (health > maxHealth) health = maxHealth;
         UpdatePlayerUI();
+    }
+
+    public void UseResistancePotion(ResistancePotion resistancePotion)
+    {
+        resistPotion = resistancePotion;
+        Debug.Log("Player is currently resistant to " + resistancePotion.Element.ToString());
     }
     /* Previous Functions
     public int Turn(Card c)

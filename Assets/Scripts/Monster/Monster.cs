@@ -57,7 +57,7 @@ public class Monster : MonoBehaviour
         }
         health -= damage + bonus;
         Debug.Log("Player delt " + (damage + bonus) + " damage using a card");
-        Debug.Log(health);
+        Debug.Log("Monster has " + health + " health left");
         if(health <= 0)
         {
             newMonster();
@@ -81,6 +81,7 @@ public class Monster : MonoBehaviour
         }
         health -= damage;
         Debug.Log("Player delt " + damage + " damage using a potion");
+        Debug.Log("Monster has " + health + " health left");
         UpdateMonsterUI();
     }
 

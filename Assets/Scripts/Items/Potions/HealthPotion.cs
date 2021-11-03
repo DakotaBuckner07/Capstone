@@ -6,6 +6,12 @@ public class HealthPotion : Potion
 {
     private int multiplier;
 
+    private void Start()
+    {
+        multiplier = Utilities.GetRandNumTimesLevel(10, 15);
+        value = (int)(multiplier * Random.Range(1.0f, 1.5f));
+    }
+
     public HealthPotion(int multi, int price)
     {
         multiplier = multi;
