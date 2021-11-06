@@ -14,26 +14,39 @@ public class PotionCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Starting");
         if(collision.gameObject.GetComponent<ResistancePotion>() != null)
         {
-            Debug.Log("Resistance");
+            Debug.Log("Resistance Potion Used");
             ResistancePotion r = collision.gameObject.GetComponent<ResistancePotion>();
+
+            //For Test
+            r.changePotion();
+
             r.Use();
             player.UseResistancePotion(r); 
             Destroy(collision.gameObject, r.Duration);
         }
         else if(collision.gameObject.GetComponent<DamagePotion>() != null)
         {
-            Debug.Log("Damage");
+            Debug.Log("Damage Potion Used");
+            DamagePotion d = collision.gameObject.GetComponent<DamagePotion>();
+
+            //For Test
+            d.changePotion();
+
             monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
-            monster.TakeDamage(collision.gameObject.GetComponent<DamagePotion>());
+            monster.TakeDamage(d);
             Destroy(collision.gameObject);
         }
         else if(collision.gameObject.GetComponent<HealthPotion>() != null)
         {
-            Debug.Log("Health");
-            player.Heal(collision.gameObject.GetComponent<HealthPotion>().healAmount());
+            Debug.Log("Health Potion Used");
+            HealthPotion h = collision.gameObject.GetComponent<HealthPotion>();
+
+            //For Test
+            h.changePotion();
+
+            player.Heal(h.Value);
             Destroy(collision.gameObject);
         }
     }

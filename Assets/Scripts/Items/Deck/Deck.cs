@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    [SerializeField]
+    private List<Material> cardMaterials;
     private List<Card> deck = new List<Card>();
     public List<Card> GetDeck { get => deck; }
     [SerializeField]
@@ -13,6 +15,7 @@ public class Deck : MonoBehaviour
 
     public void newDeck()
     {
+        int materialIndex = 0;
         deck = new List<Card>();
         for(int i = 0; i <= 3; i++)
         {
@@ -38,12 +41,14 @@ public class Deck : MonoBehaviour
                 Card c = new Card(e, s, j);
 
                 cardPrefab.GetComponent<Card>().SetCard(c.Element, c.Suit, c.Value);
+                cardPrefab.GetComponentsInChildren<MeshRenderer>()[0].material = cardMaterials[materialIndex];
                 GameObject card = Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 
                 card.transform.SetParent(GameObject.FindGameObjectWithTag("Deck").transform, false);
 
                 deck.Add(c);
             }
+            materialIndex++;
         }
         Shuffle(2);
     }

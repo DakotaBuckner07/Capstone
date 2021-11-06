@@ -59,10 +59,13 @@ public class Player : MonoBehaviour
             if(Utilities.CheckElements(equippedShield.Element, e) == 1)
             {
                 currResistance += equippedShield.Resistance * 2;
+                Debug.Log("Shield resisted by " + equippedShield.Resistance * 2);
             }
             else if(Utilities.CheckElements(equippedShield.Element, e) != -1)
             {
                 currResistance += equippedShield.Resistance;
+                Debug.Log("Shield resisted by " + equippedShield.Resistance);
+                Debug.Log("Monster should have delt " + dmg);
             }
         }
         if (resistPotion != null && Utilities.CheckElements(resistPotion.Element, e) == 1)
@@ -71,8 +74,8 @@ public class Player : MonoBehaviour
             Debug.Log("Player is resistant to " + resistPotion.Element.ToString());
         }
         if (dmg <= currResistance) return;
-        health -= (dmg - resistance);
-        Debug.Log("Monster delt " + (dmg - resistance) + " damage");
+        health -= (dmg - currResistance);
+        Debug.Log("Monster delt " + (dmg - currResistance) + " damage");
         UpdatePlayerUI();
     }
 
@@ -94,25 +97,17 @@ public class Player : MonoBehaviour
         resistPotion = resistancePotion;
         Debug.Log("Player is currently resistant to " + resistancePotion.Element.ToString());
     }
-    /* Previous Functions
-    public int Turn(Card c)
-    {
-        ableToUseCard = false;
-        int value = c.Value;
-        hand.Remove(c);
-        DrawCard();
-        if (equippedWeapon != null) return value + equippedWeapon.Damage;
-        return value;
-    }
-    */
+
     #region inventory
-    public void EquipShield(Shield armor)
+    public void EquipShield(Shield shield)
     {
-        equippedShield = armor;
+        equippedShield = shield;
+        Debug.Log("Player has equipped a " + shield.Element.ToString() + " shield with a resistance of " + shield.Resistance);
     }
     public void EquipWeapon(Weapon weapon)
     {
         equippedWeapon = weapon;
+        Debug.Log("Player has equipped a " + weapon.Element.ToString() + " weapon with a bonus of " + weapon.Damage);
     }
     #endregion
 

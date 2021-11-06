@@ -22,13 +22,15 @@ public class ResistancePotion : Potion
     public void changePotion()
     {
         element = Utilities.GetRandomElement();
+
+        value = Utilities.GetRandNumTimesLevel(2, 5);
+        duration = Utilities.GetRandNumTimesLevel(5, 10);
+        price = (int)(value * Random.Range(1.0f, 2.0f));
     }
     
     public void Use()
     {
         inUse = true;
-        value = 10;
-        duration = 10;
         Debug.Log("Resistant to " + value + " for " + duration + " seconds");
     }
 

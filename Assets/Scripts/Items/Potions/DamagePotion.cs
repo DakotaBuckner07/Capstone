@@ -11,6 +11,14 @@ public class DamagePotion : Potion
         this.price = price;
     }
 
+    public void changePotion()
+    {
+        element = Utilities.GetRandomElement();
+
+        value = Utilities.GetRandNumTimesLevel(4, 13);
+        price = (int)(value * Random.Range(1.0f, 2.0f));
+    }
+
     public int Use(Element enemyElement)
     {
         int weak = Utilities.CheckElements(enemyElement, element);

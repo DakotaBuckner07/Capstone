@@ -13,4 +13,11 @@ public class Weapon : Item
         element = e;
         this.price = price;
     }
+
+    public void changeWeapon()
+    {
+        damage = Utilities.GetRandNumTimesLevel(1, 5);
+        element = Utilities.GetRandomElement();
+        this.price = (int)(damage * Random.Range(1.0f, 2.0f));
+    }
 }
