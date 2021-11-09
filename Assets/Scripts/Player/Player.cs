@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    #region UI
+    #region UI Variables
     private Slider healthBar;
     private Text healthTxt;
     [SerializeField]
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
     private Text shieldTxt;
     [SerializeField]
     private Text potionTxt;
-
     #endregion
     void Start()
     {
@@ -104,6 +103,7 @@ public class Player : MonoBehaviour
     {
         health += heal;
         if (health > maxHealth) health = maxHealth;
+        UpdateHealthUI();
     }
 
     public void UseResistancePotion(ResistancePotion resistancePotion)
@@ -137,10 +137,17 @@ public class Player : MonoBehaviour
 
     private void UpdatePotionUI()
     {
-        potionTxt.text = "Potion: " +
-            "\n" + resistPotion.Element.ToString() +
-            "\n" + resistPotion.Resistance + 
-            "\n" + resistPotion.Duration;
+        if (System.Math.Round(resistPotion.Duration, 2) - .05 >= 0)
+        {
+            potionTxt.text = "Potion: " +
+                "\n" + resistPotion.Element.ToString() +
+                "\nResists " + resistPotion.Resistance +
+                "\nTime: " + System.Math.Round(resistPotion.Duration, 2);
+        }
+        else
+        {
+            potionTxt.text = "Potion: \n None";
+        }
     }
 
     private void UpdateEquipmentUI()
@@ -149,13 +156,13 @@ public class Player : MonoBehaviour
         {
             shieldTxt.text = "Shield: " +
                 "\n" + equippedShield.Element.ToString() +
-                "\n" + equippedShield.Resistance;
+                "\n+" + equippedShield.Resistance + " resistance";
         }
         if(equippedWeapon != null)
         {
             weaponTxt.text = "Weapon: " +
                 "\n" + equippedWeapon.Element.ToString() +
-                "\n" + equippedWeapon.Damage;
+                "\n+" + equippedWeapon.Damage + " damage\n";
         }
     }
     #endregion

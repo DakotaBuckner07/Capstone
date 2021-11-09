@@ -19,5 +19,21 @@ public class Weapon : Item
         damage = Utilities.GetRandNumTimesLevel(1, 5);
         element = Utilities.GetRandomElement();
         this.price = (int)(damage * Random.Range(1.0f, 2.0f));
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        if (bought)
+        {
+            itemText.text = "Element: " + element.ToString() +
+                "\nDamage: +" + damage;
+        }
+        else
+        {
+            itemText.text = "Element: " + element.ToString() +
+                "\nDamage: +" + damage + 
+                "\nPrice: " + price;
+        }
     }
 }

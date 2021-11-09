@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour
-{ 
-    public Text priceTxt;
-    public Text pointTxt;
-    public Image elementImg;
-
+{
+    [SerializeField]
+    protected Text itemText;
     protected Element element;
     protected int price;
+    protected bool bought = false;
 
     public Element Element { get => element; }
     public int Price { get => price; }

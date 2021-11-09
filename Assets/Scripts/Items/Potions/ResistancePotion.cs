@@ -26,12 +26,30 @@ public class ResistancePotion : Potion
         value = Utilities.GetRandNumTimesLevel(2, 5);
         duration = Utilities.GetRandNumTimesLevel(5, 10);
         price = (int)(value * Random.Range(1.0f, 2.0f));
+        UpdateUI();
     }
-    
+
+    public void UpdateUI()
+    {
+        if (bought)
+        {
+            itemText.text = "Type: Resistance" +
+                "\nElement: " + element.ToString() +
+                "\nResists: " + value;
+        }
+        else
+        {
+            itemText.text = "Type: Resistance" +
+                "\nElement: " + element.ToString() +
+                "\nResists: " + value +
+                "\nPrice: " + price;
+        }
+    }
+
     public void Use()
     {
         inUse = true;
-        Debug.Log("Resistant to " + value + " for " + duration + " seconds");
+        Debug.Log("Resistant to " + value + " " + element.ToString() + " for " + duration + " seconds");
     }
 
     private void Update()
