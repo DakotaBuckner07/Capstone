@@ -8,6 +8,7 @@ TagManager:
   - MonsterSpawner
   - Card
   - Monster
+  - PlayerHealthBar
   layers:
   - Default
   - TransparentFX

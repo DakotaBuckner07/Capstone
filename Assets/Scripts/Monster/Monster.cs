@@ -47,12 +47,16 @@ public class Monster : MonoBehaviour
         if (weakness == 1)
         {
             TakeDamage(c, w.Damage * 2);
-            Debug.Log("Enemy is Weak to " + c.Suit.ToString());
+            Debug.Log("Enemy is Weak to player's " + w.Element.ToString() + " weapon.");
         }
         else if (weakness == -1)
         {
             TakeDamage(c, w.Damage / 2);
-            Debug.Log("Enemy is Strong against " + c.Suit.ToString());
+            Debug.Log("Enemy is Strong against player's " + w.Element.ToString() + " weapon.");
+        }
+        else
+        {
+            TakeDamage(c, w.Damage);
         }
     }
 
@@ -63,12 +67,12 @@ public class Monster : MonoBehaviour
         if (weakness == 1)
         {
             damage *= 2;
-            Debug.Log("Enemy is Weak to " + c.Suit.ToString());
+            Debug.Log("Enemy is Weak to the " + c.Suit.ToString() + " card.");
         }
         else if (weakness == -1)
         {
             damage /= 2;
-            Debug.Log("Enemy is Strong against " + c.Suit.ToString());
+            Debug.Log("Enemy is Strong against the " + c.Suit.ToString() + " card.");
         }
         health -= damage + bonus;
         Debug.Log("Player delt " + damage + " damage with a weapon bonus of " + bonus + " using a card.");

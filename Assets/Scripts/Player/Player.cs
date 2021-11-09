@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class Player : MonoBehaviour
     private int maxHealth = 100;
     private int health;
     private int coins;
+    [SerializeField]
+    private float projectileTimer = 5.0f;
+
+    public int damage = 2;
+    public int resistance = 0;
+    public bool ableToUseCard = true;
 
     private Deck deck;
     private ResistancePotion resistPotion;
@@ -22,12 +29,19 @@ public class Player : MonoBehaviour
     public int Coins { get => coins; set { coins += value; } }
     public Weapon GetWeapon { get => equippedWeapon; }
     public Shield GetShield { get => equippedShield; }
-    public int damage = 2;
-    public int resistance = 0;
-    public bool ableToUseCard = true;
 
+    #endregion
+
+    #region UI
+    private Slider healthBar;
+    private Text healthTxt;
     [SerializeField]
-    private float projectileTimer = 5.0f;
+    private Text weaponTxt;
+    [SerializeField]
+    private Text shieldTxt;
+    [SerializeField]
+    private Text potionTxt;
+
     #endregion
     void Start()
     {
@@ -35,7 +49,11 @@ public class Player : MonoBehaviour
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
         hand = deck.Draw(5);
         ableToUseCard = true;
-        UpdatePlayerUI();
+
+        healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<Slider>();
+        healthTxt = healthBar.GetComponentInChildren<Text>();
+        healthBar.maxValue = maxHealth;
+        UpdateHealthUI();
     }
 
     private void Update()
@@ -49,6 +67,7 @@ public class Player : MonoBehaviour
                 ableToUseCard = true;
             }
         }
+        if (resistPotion != null) UpdatePotionUI();
     }
 
     public void TakeDamage(int dmg, Element e)
@@ -76,43 +95,68 @@ public class Player : MonoBehaviour
         if (dmg <= currResistance) return;
         health -= (dmg - currResistance);
         Debug.Log("Monster delt " + (dmg - currResistance) + " damage");
-        UpdatePlayerUI();
+
+        UpdateHealthUI();
     }
 
-    public void DrawCard()
-    {
-        hand.Add(deck.Draw());
-        UpdatePlayerUI();
-    }
-
+    #region Potions
     public void Heal(int heal)
     {
         health += heal;
         if (health > maxHealth) health = maxHealth;
-        UpdatePlayerUI();
     }
 
     public void UseResistancePotion(ResistancePotion resistancePotion)
     {
         resistPotion = resistancePotion;
-        Debug.Log("Player is currently resistant to " + resistancePotion.Element.ToString());
+        UpdatePotionUI();
+        Debug.Log("Player is currently resistant to " + resistancePotion.Element.ToString() + " for " + resistPotion.Duration + " seconds.");
     }
-
-    #region inventory
+    #endregion
+    #region Inventory
     public void EquipShield(Shield shield)
     {
         equippedShield = shield;
+        UpdateEquipmentUI();
         Debug.Log("Player has equipped a " + shield.Element.ToString() + " shield with a resistance of " + shield.Resistance);
     }
     public void EquipWeapon(Weapon weapon)
     {
         equippedWeapon = weapon;
+        UpdateEquipmentUI();
         Debug.Log("Player has equipped a " + weapon.Element.ToString() + " weapon with a bonus of " + weapon.Damage);
     }
     #endregion
 
-    public void UpdatePlayerUI()
+    #region UI
+    private void UpdateHealthUI()
     {
-        //playerUI.UpdatePlayerUI(Health, maxHealth, hand, coins);
+        healthBar.value = (maxHealth - health);
+        healthTxt.text = (health + "/" + maxHealth);
     }
+
+    private void UpdatePotionUI()
+    {
+        potionTxt.text = "Potion: " +
+            "\n" + resistPotion.Element.ToString() +
+            "\n" + resistPotion.Resistance + 
+            "\n" + resistPotion.Duration;
+    }
+
+    private void UpdateEquipmentUI()
+    {
+        if (equippedShield != null)
+        {
+            shieldTxt.text = "Shield: " +
+                "\n" + equippedShield.Element.ToString() +
+                "\n" + equippedShield.Resistance;
+        }
+        if(equippedWeapon != null)
+        {
+            weaponTxt.text = "Weapon: " +
+                "\n" + equippedWeapon.Element.ToString() +
+                "\n" + equippedWeapon.Damage;
+        }
+    }
+    #endregion
 }
