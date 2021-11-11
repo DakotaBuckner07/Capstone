@@ -33,7 +33,7 @@ public class Shop : MonoBehaviour
         }
         for (int i = 1; i <= transforms.Length - 4; i++)
         {
-            int type = Random.Range(0, 4);
+            int type = Random.Range(0, 5);
             switch (type)
             {
                 case 0:

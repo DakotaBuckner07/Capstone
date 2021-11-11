@@ -31,7 +31,7 @@ public class DamagePotion : Potion
         }
         else
         {
-            itemText.text = "Type: Resistance" +
+            itemText.text = "Type: Damage" +
                 "\nElement: " + element.ToString() +
                 "\nDamage: " + value +
                 "\nPrice: " + price;

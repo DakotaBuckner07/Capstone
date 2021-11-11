@@ -94,7 +94,6 @@ public class Player : MonoBehaviour
         if (dmg <= currResistance) return;
         health -= (dmg - currResistance);
         Debug.Log("Monster delt " + (dmg - currResistance) + " damage");
-        GameObject.FindGameObjectWithTag("Shop").GetComponent<Shop>().newShop();
         UpdateHealthUI();
     }
 
