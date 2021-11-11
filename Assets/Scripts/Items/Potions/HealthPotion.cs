@@ -11,6 +11,7 @@ public class HealthPotion : Potion
         multiplier = multi;
         this.price = price;
         value = (int)(multiplier * Random.Range(1.0f, 1.5f));
+        UpdateUI();
     }
 
     public void changePotion()

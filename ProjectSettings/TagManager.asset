@@ -9,6 +9,7 @@ TagManager:
   - Card
   - Monster
   - PlayerHealthBar
+  - Shop
   layers:
   - Default
   - TransparentFX

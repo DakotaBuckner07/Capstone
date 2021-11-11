@@ -12,6 +12,7 @@ public class Weapon : Item
         damage = dmg;
         element = e;
         this.price = price;
+        UpdateUI();
     }
 
     public void changeWeapon()

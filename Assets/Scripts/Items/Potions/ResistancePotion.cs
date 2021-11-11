@@ -17,6 +17,7 @@ public class ResistancePotion : Potion
         value = resist;
         duration = time;
         this.price = price;
+        UpdateUI();
     }
 
     public void changePotion()

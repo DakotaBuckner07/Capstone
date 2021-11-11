@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour
         monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        deck.newDeck();
     }
 
     public void HealPlayer()

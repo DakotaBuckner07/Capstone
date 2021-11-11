@@ -9,6 +9,7 @@ public class DamagePotion : Potion
         element = e;
         value = dmg;
         this.price = price;
+        UpdateUI();
     }
 
     public void changePotion()
@@ -17,6 +18,7 @@ public class DamagePotion : Potion
 
         value = Utilities.GetRandNumTimesLevel(4, 13);
         price = (int)(value * Random.Range(1.0f, 2.0f));
+        UpdateUI();
     }
 
     public void UpdateUI()

@@ -47,8 +47,8 @@ public class Deck : MonoBehaviour
                 card.transform.SetParent(GameObject.FindGameObjectWithTag("Deck").transform, false);
 
                 deck.Add(c);
+                materialIndex++;
             }
-            materialIndex++;
         }
         Shuffle(2);
     }

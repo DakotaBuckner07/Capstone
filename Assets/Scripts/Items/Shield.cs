@@ -11,6 +11,7 @@ public class Shield : Item
         dmgResistance = resist;
         element = e;
         this.price = price;
+        UpdateUI();
     }
 
     public void changeShield()
