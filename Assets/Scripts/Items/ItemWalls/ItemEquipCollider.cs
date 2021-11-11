@@ -17,17 +17,11 @@ public class ItemEquipCollider : MonoBehaviour
         {
             Weapon w = collision.gameObject.GetComponent<Weapon>();
 
-            //For Test
-            w.changeWeapon();
-
             player.EquipWeapon(w);
         }
         else if (collision.gameObject.GetComponent<Shield>() != null)
         {
             Shield s = collision.gameObject.GetComponent<Shield>();
-
-            //For Test
-            s.changeShield();
 
             player.EquipShield(s);
         }

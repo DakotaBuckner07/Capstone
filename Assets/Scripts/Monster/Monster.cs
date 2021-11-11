@@ -24,9 +24,14 @@ public class Monster : MonoBehaviour
 
     public void newMonster()
     {
+        newMonster(Utilities.GetRandomElement());
+    }
+
+    public void newMonster(Element e)
+    {
         maxHealth = Utilities.newMonsterHealth();
         health = maxHealth;
-        element = Utilities.GetRandomElement();
+        element = e;
         Debug.Log(maxHealth);
         UpdateMonsterUI();
     }
@@ -43,6 +48,12 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(Card c, Weapon w)
     {
+        if (w == null)
+        {
+            TakeDamage(c);
+            return;
+        }
+
         int weakness = Utilities.CheckElements(element, w.Element);
         if (weakness == 1)
         {
@@ -79,6 +90,9 @@ public class Monster : MonoBehaviour
         Debug.Log("Monster has " + health + " health left");
         if(health <= 0)
         {
+            gameController.player.Coins = Random.Range(Utilities.GetRandNumTimesLevel(3, 5), maxHealth);
+            gameController.newMonster();
+            Destroy(gameObject, 0);
             newMonster();
         }
         UpdateMonsterUI();

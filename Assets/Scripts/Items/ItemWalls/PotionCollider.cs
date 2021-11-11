@@ -19,9 +19,6 @@ public class PotionCollider : MonoBehaviour
             Debug.Log("Resistance Potion Used");
             ResistancePotion r = collision.gameObject.GetComponent<ResistancePotion>();
 
-            //For Test
-            r.changePotion();
-
             r.Use();
             player.UseResistancePotion(r); 
             Destroy(collision.gameObject, r.Duration);
@@ -31,9 +28,6 @@ public class PotionCollider : MonoBehaviour
             Debug.Log("Damage Potion Used");
             DamagePotion d = collision.gameObject.GetComponent<DamagePotion>();
 
-            //For Test
-            d.changePotion();
-
             monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
             monster.TakeDamage(d);
             Destroy(collision.gameObject);
@@ -42,9 +36,6 @@ public class PotionCollider : MonoBehaviour
         {
             Debug.Log("Health Potion Used");
             HealthPotion h = collision.gameObject.GetComponent<HealthPotion>();
-
-            //For Test
-            h.changePotion();
 
             player.Heal(h.Value);
             Destroy(collision.gameObject);

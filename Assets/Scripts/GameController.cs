@@ -10,13 +10,21 @@ public class GameController : MonoBehaviour
 
     public Deck deck;
     public Player player;
+    public MonsterSpawner monsterSpawner;
     public Monster monster;
+
     private void Start()
     {
-        GameObject.FindGameObjectWithTag("MonsterSpawner").GetComponent<MonsterSpawner>().newMonster();
-        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+        monsterSpawner = GameObject.FindGameObjectWithTag("MonsterSpawner").GetComponent<MonsterSpawner>();
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Deck>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        newMonster();
+    }
+
+    public void newMonster()
+    {
+        monsterSpawner.newMonster();
+        monster = GameObject.FindGameObjectWithTag("Animal").GetComponent<Monster>();
     }
 
     public void HealPlayer()

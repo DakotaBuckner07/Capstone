@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     #region Variables
     private int maxHealth = 100;
     private int health;
-    private int coins;
+    private int coins = 0;
     [SerializeField]
     private float projectileTimer = 5.0f;
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     public List<Card> GetHand { get => hand; }
     public int Health { get => health; }
-    public int Coins { get => coins; set { coins += value; } }
+    public int Coins { get => coins; set { coins += value; UpdateMoneyUI(); } }
     public Weapon GetWeapon { get => equippedWeapon; }
     public Shield GetShield { get => equippedShield; }
 
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     private Text shieldTxt;
     [SerializeField]
     private Text potionTxt;
+    [SerializeField]
+    private Text coinsTxt;
     #endregion
     void Start()
     {
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
         healthTxt = healthBar.GetComponentInChildren<Text>();
         healthBar.maxValue = maxHealth;
         UpdateHealthUI();
+        UpdateMoneyUI();
     }
 
     private void Update()
@@ -128,6 +131,11 @@ public class Player : MonoBehaviour
     #endregion
 
     #region UI
+    private void UpdateMoneyUI()
+    {
+        coinsTxt.text = coins + " gold";
+    }
+
     private void UpdateHealthUI()
     {
         healthBar.value = (maxHealth - health);

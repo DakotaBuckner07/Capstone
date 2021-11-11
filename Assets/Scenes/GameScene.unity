@@ -1412,7 +1412,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c3231e41c25d149bdbf9fb85155533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1774808390152777648, guid: 1ffe469c464bf0546a2499886ddad8ae,
+  WaterMonsterPrefab: {fileID: 7207962382003748850, guid: b422f08031df98f4f885b22d71284fab,
+    type: 3}
+  EarthMonsterPrefab: {fileID: 1862686298371187595, guid: 045fc443884b27f4cb46249a589efa74,
+    type: 3}
+  FireMonsterPrefab: {fileID: 3701374006920088782, guid: f268cf39fda3adf41b74a7880b4f28a8,
+    type: 3}
+  AirMonsterPrefab: {fileID: 7032970243566814723, guid: d90502eac64a97249a78f5ec8bf3d202,
     type: 3}
   spawnerTransform: {fileID: 708105458}
 --- !u!4 &708105458
@@ -1422,13 +1428,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708105456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: 1.1, z: 2.56}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -3.37, y: 1.1, z: 0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &732281312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1703,7 +1709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785554786}
   m_Layer: 0
-  m_Name: Items
+  m_Name: TestItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2632,6 +2638,7 @@ MonoBehaviour:
   weaponTxt: {fileID: 1478443260}
   shieldTxt: {fileID: 1667836908}
   potionTxt: {fileID: 365518453}
+  coinsTxt: {fileID: 2011889063}
 --- !u!1 &1426279924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,6 +2742,7 @@ RectTransform:
   - {fileID: 1030016524}
   - {fileID: 365518452}
   - {fileID: 438654984}
+  - {fileID: 2011889065}
   m_Father: {fileID: 1725982594}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2836,6 +2844,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   deck: {fileID: 534285933}
   player: {fileID: 1422292286}
+  monsterSpawner: {fileID: 0}
   monster: {fileID: 0}
 --- !u!4 &1456827435
 Transform:
@@ -3477,6 +3486,85 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &2011889062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011889065}
+  - component: {fileID: 2011889064}
+  - component: {fileID: 2011889063}
+  m_Layer: 5
+  m_Name: CoinTxt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011889063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011889062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 1
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Bottom Right
+--- !u!222 &2011889064
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011889062}
+  m_CullTransparentMesh: 1
+--- !u!224 &2011889065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011889062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1435749278}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 2.5, y: 0.3}
+  m_SizeDelta: {x: 2, y: 0.2}
+  m_Pivot: {x: 1, y: 0}
 --- !u!1001 &2038249430
 PrefabInstance:
   m_ObjectHideFlags: 0
