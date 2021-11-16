@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     #region Variables
     private int maxHealth = 100;
     private int health;
-    private int coins = 0;
+    private int coins = 1000;
     [SerializeField]
     private float projectileTimer = 5.0f;
 

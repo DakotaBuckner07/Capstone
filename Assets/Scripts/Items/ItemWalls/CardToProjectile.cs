@@ -15,7 +15,7 @@ public class CardToProjectile : MonoBehaviour
         if(collision.gameObject.GetComponent<Card>() != null)
         {
             Card c = collision.gameObject.GetComponent<Card>();
-            GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>().TakeDamage(c, player.GetWeapon);
+            GameObject.FindGameObjectWithTag("Animal").GetComponent<Monster>().TakeDamage(c, player.GetWeapon);
             Destroy(collision.gameObject);
             player.ableToUseCard = false;
         }

@@ -14,7 +14,12 @@ public class PotionCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<ResistancePotion>() != null)
+        if (!collision.gameObject.GetComponent<Item>().isBought)
+        {
+            Destroy(collision.gameObject, 0);
+            return;
+        }
+        if (collision.gameObject.GetComponent<ResistancePotion>() != null)
         {
             Debug.Log("Resistance Potion Used");
             ResistancePotion r = collision.gameObject.GetComponent<ResistancePotion>();

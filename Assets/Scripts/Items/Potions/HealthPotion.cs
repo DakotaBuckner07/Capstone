@@ -23,8 +23,9 @@ public class HealthPotion : Potion
         UpdateUI();
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
+        Debug.Log("UpdateUI " + value);
         if (bought)
         {
             itemText.text = "Type: Health" +

@@ -176,6 +176,11 @@ PrefabInstance:
       propertyPath: materialList.Array.data[0].materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: 0647a79d185fabd419a129918da4bd9e, type: 2}
+    - target: {fileID: 2677581075196657671, guid: 2986c0a61b6308f45930a0055644fbd2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7984295731383558476, guid: 2986c0a61b6308f45930a0055644fbd2,
         type: 3}
       propertyPath: m_RootOrder
@@ -238,6 +243,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
         type: 3}
+      propertyPath: Editor_Tabs1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
+        type: 3}
+      propertyPath: Editor_Tabs2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
+        type: 3}
+      propertyPath: ShowMovement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
+        type: 3}
       propertyPath: modes.Array.data[0].active
       value: 0
       objectReference: {fileID: 0}
@@ -264,6 +284,11 @@ PrefabInstance:
     - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
         type: 3}
       propertyPath: modes.Array.data[5].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984295731383958418, guid: 2986c0a61b6308f45930a0055644fbd2,
+        type: 3}
+      propertyPath: useCameraInput.ConstantValue
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7984295731383991660, guid: 2986c0a61b6308f45930a0055644fbd2,

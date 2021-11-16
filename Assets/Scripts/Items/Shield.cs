@@ -6,6 +6,11 @@ public class Shield : Item
     private int dmgResistance;
     public int Resistance { get => dmgResistance; }
 
+    private void Start()
+    {
+        changeShield();
+    }
+
     public Shield(int resist, Element e, int price)
     {
         dmgResistance = resist;
@@ -22,7 +27,7 @@ public class Shield : Item
         UpdateUI();
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
         if (bought)
         {

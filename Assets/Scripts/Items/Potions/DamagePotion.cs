@@ -21,7 +21,7 @@ public class DamagePotion : Potion
         UpdateUI();
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
         if (bought)
         {

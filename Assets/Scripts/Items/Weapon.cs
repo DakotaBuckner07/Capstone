@@ -7,6 +7,10 @@ public class Weapon : Item
     private int damage;
     public int Damage { get => damage; }
 
+    private void Start()
+    {
+        changeWeapon();
+    }
     public Weapon(int dmg, Element e, int price)
     {
         damage = dmg;
@@ -23,7 +27,7 @@ public class Weapon : Item
         UpdateUI();
     }
 
-    public void UpdateUI()
+    public override void UpdateUI()
     {
         if (bought)
         {

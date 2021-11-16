@@ -13,6 +13,11 @@ public class ItemEquipCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!collision.gameObject.GetComponent<Item>().isBought)
+        {
+            Destroy(collision.gameObject, 0);
+            return;
+        }
         if (collision.gameObject.GetComponent<Weapon>() != null)
         {
             Weapon w = collision.gameObject.GetComponent<Weapon>();
@@ -24,6 +29,10 @@ public class ItemEquipCollider : MonoBehaviour
             Shield s = collision.gameObject.GetComponent<Shield>();
 
             player.EquipShield(s);
+        }
+        else
+        {
+            Destroy(collision.gameObject, 0);
         }
     }
 }
