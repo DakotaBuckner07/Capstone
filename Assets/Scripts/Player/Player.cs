@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     #region Variables
-    private int maxHealth = 100;
+    private int maxHealth = 1000;
     private int health;
     private int coins = 1000;
     [SerializeField]
@@ -43,7 +43,10 @@ public class Player : MonoBehaviour
     private Text potionTxt;
     [SerializeField]
     private Text coinsTxt;
+    [SerializeField]
+    private Text cardTimerTxt;
     #endregion
+
     void Start()
     {
         health = maxHealth;
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour
             }
         }
         if (resistPotion != null) UpdatePotionUI();
+        if (ableToUseCard == false) UpdateCardUI();
     }
 
     public void TakeDamage(int dmg, Element e)
@@ -170,6 +174,18 @@ public class Player : MonoBehaviour
             weaponTxt.text = "Weapon: " +
                 "\n" + equippedWeapon.Element.ToString() +
                 "\n+" + equippedWeapon.Damage + " damage\n";
+        }
+    }
+
+    private void UpdateCardUI()
+    {
+        if(System.Math.Round(projectileTimer, 2) - .05 >= 0)
+        {
+            cardTimerTxt.text = "Use card in: " + System.Math.Round(projectileTimer, 2);
+        }
+        else
+        {
+            cardTimerTxt.text = "Use card now";
         }
     }
     #endregion

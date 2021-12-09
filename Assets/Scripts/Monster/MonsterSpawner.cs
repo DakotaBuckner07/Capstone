@@ -12,20 +12,24 @@ public class MonsterSpawner : MonoBehaviour
 
     public void newMonster()
     {
+        if (GameObject.FindGameObjectWithTag("Animal") != null) Destroy(GameObject.FindGameObjectWithTag("Animal"));
         Element e = Utilities.GetRandomElement();
-        Debug.Log(e.ToString());
         switch (e)
         {
             case Element.Air:
+                AirMonsterPrefab.GetComponent<Monster>().newMonster(Element.Air);
                 Instantiate(AirMonsterPrefab, spawnerTransform);
                 break;
             case Element.Earth:
+                EarthMonsterPrefab.GetComponent<Monster>().newMonster(Element.Earth);
                 Instantiate(EarthMonsterPrefab, spawnerTransform);
                 break;
             case Element.Water:
+                WaterMonsterPrefab.GetComponent<Monster>().newMonster(Element.Water);
                 Instantiate(WaterMonsterPrefab, spawnerTransform);
                 break;
             case Element.Fire:
+                FireMonsterPrefab.GetComponent<Monster>().newMonster(Element.Fire);
                 Instantiate(FireMonsterPrefab, spawnerTransform);
                 break;
             default:

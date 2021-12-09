@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResistancePotion : Potion
 {
+    [SerializeField]
     private float duration;
     private bool inUse = false;
 

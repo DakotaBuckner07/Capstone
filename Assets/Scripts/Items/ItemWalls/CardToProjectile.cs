@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class CardToProjectile : MonoBehaviour
 {
-    private Player player;
+    private GameController gc;
+
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
-    public void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (!player.ableToUseCard) return;
-        if(collision.gameObject.GetComponent<Card>() != null)
+        if (!gc.player.ableToUseCard) return;
+        if (other.gameObject.GetComponent<Card>() != null)
         {
-            Card c = collision.gameObject.GetComponent<Card>();
-            GameObject.FindGameObjectWithTag("Animal").GetComponent<Monster>().TakeDamage(c, player.GetWeapon);
-            Destroy(collision.gameObject);
-            player.ableToUseCard = false;
+            Card c = other.gameObject.GetComponent<Card>();
+            gc.monster.TakeDamage(c, gc.player.GetWeapon);
+            Destroy(other.gameObject);
+            gc.player.ableToUseCard = false;
         }
     }
 }

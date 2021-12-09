@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     private GameObject gameOverScreen;
+    private bool paused = false;
 
     public Deck deck;
     public Player player;
@@ -21,15 +22,16 @@ public class GameController : MonoBehaviour
         newMonster();
     }
 
+    public void Pause()
+    {
+        paused = !paused;
+        Time.timeScale = (paused) ? 0.01f : 1;
+    }
+
     public void newMonster()
     {
         monsterSpawner.newMonster();
         monster = GameObject.FindGameObjectWithTag("Animal").GetComponent<Monster>();
-    }
-
-    public void HealPlayer()
-    {
-        player.Heal(Utilities.GetRandNumTimesLevel(10, 30));
     }
 
     public void MonsterAttack()

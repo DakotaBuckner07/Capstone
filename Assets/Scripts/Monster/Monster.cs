@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    public Slider healthbar;
-
     private int maxHealth;
+    [SerializeField]
     private int health;
     private Element element;
     private float attackTimer = 5.0f;
 
     private GameController gameController;
-
     public int Health { get => health; }
     public Element getElement { get => element; }
 
@@ -22,17 +20,11 @@ public class Monster : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    public void newMonster()
-    {
-        newMonster(Utilities.GetRandomElement());
-    }
-
     public void newMonster(Element e)
     {
         maxHealth = Utilities.newMonsterHealth();
         health = maxHealth;
         element = e;
-        Debug.Log(maxHealth);
         UpdateMonsterUI();
     }
 
@@ -93,7 +85,6 @@ public class Monster : MonoBehaviour
             gameController.player.Coins = Random.Range(Utilities.GetRandNumTimesLevel(3, 5), maxHealth);
             gameController.newMonster();
             Destroy(gameObject, 0);
-            newMonster();
         }
         UpdateMonsterUI();
     }

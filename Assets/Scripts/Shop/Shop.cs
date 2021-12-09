@@ -23,15 +23,16 @@ public class Shop : MonoBehaviour
 
     public void newShop()
     {
+        Debug.Log("New Shop");
         Transform[] transforms = GetComponentsInChildren<Transform>();
-        for (int i = 1; i <= transforms.Length - 4; i++)
+        for (int i = 1; i <= transforms.Length - 1; i++)
         {
             if (transforms[i].childCount > 0)
             {
                 Destroy(transforms[i].GetChild(0).gameObject, 0);
             }
         }
-        for (int i = 1; i <= transforms.Length - 4; i++)
+        for (int i = 1; i <= transforms.Length - 1; i++)
         {
             int type = Random.Range(0, 5);
             switch (type)
